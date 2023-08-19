@@ -2,14 +2,19 @@
 {
     public class Circle : Figure
     {
-        private int _radius;
+        public int Radius { get; }
 
-        private Circle() => _radius = 0;
-        public Circle(int radius) => _radius = radius;
+        public Circle(int radius)
+        {
+            if (radius < 0)
+                throw new ArgumentOutOfRangeException(nameof(radius), "Radius must be non-negative.");
+
+            Radius = radius;
+        }
 
         public override double Square()
         {
-            return Math.PI * Math.Pow(_radius, 2);
+            return Math.PI * Math.Pow(Radius, 2);
         }
     }
 }
